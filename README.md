@@ -1,2 +1,2 @@
 # Textpad-
-Textpad is just like notepad with basics features using tkinter
+Textpad is just like notepad with basics features 
