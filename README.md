@@ -1,2 +1,2 @@
 # Textpad-
-Textpad is just like notepad with basics features 
+Textpad is just like notepad with basics features
