@@ -120,6 +120,10 @@ class text_editor:
             saveasreturn=filedialog.asksaveasfile(mode="w",defaultextension=".txt")
             if saveasreturn is None:
                 return
+            s=self.text.get(1.0,END)  
+            self.currentopenfile=saveasreturn.name
+            saveasreturn.write(s) 
+            saveasreturn.close()
         elif answer==False:
             self.m.destroy()
 editor=text_editor(root)
