@@ -4,6 +4,7 @@ from tkinter.font import Font
 from tkinter import colorchooser
 from tkinter import messagebox
 root=Tk()
+root.resizable(False,False)
 class text_editor:
     currentopenfile="nofile"
     def open(self):
@@ -61,9 +62,7 @@ class text_editor:
             result=self.entry.get()
             print(self.text.search(result,1.0,stopindex=END))
 
-            
         self.button=Button(self.root1,text="search",command=searchme)
-
         self.entry.pack()
         self.button.pack()
 
@@ -73,6 +72,7 @@ class text_editor:
         self.m=master
         master.title("Textpad")
         master.geometry("500x500+50+50")
+        master.protocol("WM_DELETE_WINDOW",self.on_closing)
         #master.configure(background="black")
         self.f=Font(size=13)
         self.ff=Font(family="Times New Roman",size=18,weight="bold",underline=0)
@@ -114,5 +114,13 @@ class text_editor:
         self.searchmenu.add_command(label="search",command=self.search)
 
         #self.m.bind('<Button-1>',leftclick)
+    def on_closing(self):
+        answer=messagebox.askyesnocancel("exit","want to save ?")
+        if answer:
+            saveasreturn=filedialog.asksaveasfile(mode="w",defaultextension=".txt")
+            if saveasreturn is None:
+                return
+        elif answer==False:
+            self.m.destroy()
 editor=text_editor(root)
 root.mainloop()
